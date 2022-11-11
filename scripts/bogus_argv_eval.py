@@ -17,7 +17,7 @@ def main(argv):
   simulation = project.factory.simgr(initial_state)
 
   def is_successful(state):
-    #´òÓ¡
+    #æ‰“å°
     print('state:',state)
     stdin_input = state.posix.dumps(sys.stdin.fileno())
     print('stdin_input:',stdin_input)
@@ -28,26 +28,26 @@ def main(argv):
 
 
   simulation.explore(find=is_successful)
-  #´òÓ¡
+  #æ‰“å°
   print('simutation:',simulation)
 
   if simulation.found:
     solution_state = simulation.found[0]
 
-    #´òÓ¡×îÖÕµÄ±ê×¼ÊäÈëÊä³ö
+    #æ‰“å°æœ€ç»ˆçš„æ ‡å‡†è¾“å…¥è¾“å‡º
     stdin_found =solution_state.posix.dumps(sys.stdin.fileno())
     print('stdin_found:',stdin_found)
     stdout_found =solution_state.posix.dumps(sys.stdout.fileno())
     print('stdout_found:',stdout_found)
 
-    #´òÓ¡·ûºÅ±äÁ¿Öµ
-    #ÎŞ·ûºÅÕûÊı
+    #æ‰“å°ç¬¦å·å˜é‡å€¼
+    #æ— ç¬¦å·æ•´æ•°
     solution=solution_state.solver.eval(sym_val)
-    #ASCIIÂë×Ö·û´®
+    #ASCIIç å­—ç¬¦ä¸²
     solution_bytes=solution_state.solver.eval(sym_val,cast_to=bytes)
     print('Selecting a path to Bogus! Solution is {0}({1})'.format(solution,solution_bytes))
 
-    #´òÓ¡½áÊøÊ±¼ä
+    #æ‰“å°ç»“æŸæ—¶é—´
     now_finish=datetime.datetime.now().strftime("%Y-%m-%d %H-%M:%S")
     print('finished!',now_finish)
   else:
